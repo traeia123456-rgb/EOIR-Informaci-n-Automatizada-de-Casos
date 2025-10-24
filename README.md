@@ -31,6 +31,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para desplegar esta aplicación en Vercel, sigue estos pasos:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Crea una cuenta en [Vercel](https://vercel.com) si aún no tienes una.
+2. Conecta tu repositorio de GitHub a Vercel.
+3. **Importante**: Configura las siguientes variables de entorno en Vercel:
+   - `NEXT_PUBLIC_SUPABASE_URL`: URL de tu proyecto en Supabase
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Clave anónima de tu proyecto en Supabase
+
+Puedes encontrar estas credenciales en [Supabase Dashboard](https://supabase.com/dashboard/project/_/settings/api) en la sección API.
+
+### Solución de problemas comunes
+
+- Si encuentras errores de prerenderizado durante el despliegue, verifica que las variables de entorno estén correctamente configuradas.
+- La aplicación está configurada para usar `dynamic = 'force-dynamic'` en páginas que requieren autenticación para evitar problemas de prerenderizado.
+
+Para más detalles sobre el despliegue de Next.js, consulta la [documentación oficial](https://nextjs.org/docs/app/building-your-application/deploying).
