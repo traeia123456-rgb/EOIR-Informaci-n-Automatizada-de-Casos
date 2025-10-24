@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25.957" height="23.976" viewBox="0 0 25.957 23.976">
+  <g id="Group_6774" data-name="Group 6774" transform="translate(-4223.529 -240.91)">
+    <g id="Group_6773" data-name="Group 6773" transform="translate(4223.529 240.91)">
+      <rect id="Rectangle_3099" data-name="Rectangle 3099" width="0.963" height="11.224" transform="translate(12.978 7.827)" fill="none"/>
+      <rect id="Rectangle_3100" data-name="Rectangle 3100" width="2.295" height="11.224" transform="translate(17.18 7.827)" fill="none"/>
+      <rect id="Rectangle_3101" data-name="Rectangle 3101" width="1.017" height="11.224" transform="translate(11.962 7.827)" fill="none"/>
+      <rect id="Rectangle_3102" data-name="Rectangle 3102" width="2.24" height="11.224" transform="translate(6.484 7.827)" fill="none"/>
+      <g id="Group_6766" data-name="Group 6766" transform="translate(0 5.938)">
+        <path id="Path_3209" data-name="Path 3209" d="M4268.04,375.632v-1.889h-11.582v1.889h1.848v11.224h-1.848v1.889h11.582v-1.889h-1.016V375.632Zm-4.254,11.224h-2.239V375.632h2.239Z" transform="translate(-4255.062 -373.743)" fill="#687d95"/>
+        <rect id="Rectangle_3103" data-name="Rectangle 3103" width="12.978" height="2.608" transform="translate(0 15.43)" fill="#687d95"/>
+      </g>
+      <path id="Path_3210" data-name="Path 3210" d="M4259.021,245.392h11.471v-5.02Z" transform="translate(-4257.514 -240.264)" fill="#687d95"/>
+      <g id="Group_6772" data-name="Group 6772" transform="translate(12.978 0)">
+        <g id="Group_6771" data-name="Group 6771">
+          <g id="Group_6768" data-name="Group 6768" transform="translate(0 5.938)">
+            <g id="Group_6767" data-name="Group 6767">
+              <path id="Path_3211" data-name="Path 3211" d="M4533.007,386.856h-1.847V375.632h1.847v-1.889h-11.584v1.889h.963v11.224h-.963v1.889h11.584Zm-7.382-11.224h2.295v11.224h-2.295Z" transform="translate(-4521.423 -373.743)" fill="#56687b"/>
+            </g>
+          </g>
+          <g id="Group_6769" data-name="Group 6769" transform="translate(0 21.368)">
+            <rect id="Rectangle_3104" data-name="Rectangle 3104" width="12.979" height="2.608" fill="#56687b"/>
+          </g>
+          <g id="Group_6770" data-name="Group 6770">
+            <path id="Path_3212" data-name="Path 3212" d="M4521.671,237.91l-.248.108v5.02h11.471Z" transform="translate(-4521.423 -237.91)" fill="#56687b"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
