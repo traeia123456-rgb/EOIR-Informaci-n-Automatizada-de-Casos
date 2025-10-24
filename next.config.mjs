@@ -7,8 +7,6 @@ const nextConfig = {
     // Suprimir warnings de atributos extra
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  // Enable dynamic rendering for pages that use dynamic data
-  dynamicParams: true,
 };
 
 export default nextConfig;

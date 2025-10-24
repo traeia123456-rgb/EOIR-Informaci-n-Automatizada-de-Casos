@@ -1,6 +1,9 @@
 import { createServerClient } from "@supabase/ssr"
 import { NextResponse, type NextRequest } from "next/server"
 
+// Configuración para evitar el uso de APIs de Node.js en Edge Runtime
+export const runtime = 'nodejs'
+
 const CACHE_MAX_AGE = 60 // 1 minuto en segundos
 
 // Lista de rutas públicas que no requieren autenticación
