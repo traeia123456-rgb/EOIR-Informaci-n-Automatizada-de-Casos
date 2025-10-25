@@ -18,6 +18,15 @@ export function createClient() {
     return null
   }
 
+  // Debugging helper: log presence of the public URL (do NOT log the anon key).
+  // This is safe for local debugging because it does not expose secrets.
+  try {
+    // eslint-disable-next-line no-console
+    console.info("Supabase config: NEXT_PUBLIC_SUPABASE_URL is present")
+  } catch (e) {
+    // ignore
+  }
+
   supabaseInstance = createBrowserClient(url, key, {
     auth: {
       persistSession: true,

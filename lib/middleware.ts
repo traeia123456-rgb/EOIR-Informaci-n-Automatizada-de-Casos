@@ -1,8 +1,4 @@
-import { createServerClient } from "@supabase/ssr"
 import { NextResponse, type NextRequest } from "next/server"
-
-// Configuración para evitar el uso de APIs de Node.js en Edge Runtime
-export const runtime = 'nodejs'
 
 const CACHE_MAX_AGE = 60 // 1 minuto en segundos
 
@@ -31,39 +27,22 @@ export async function updateSession(request: NextRequest) {
   }
 
   // Solo creamos el cliente de Supabase si es necesario
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll()
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => {
-            request.cookies.set(name, value)
-          })
-        },
-      },
-      auth: {
-        detectSessionInUrl: true,
-        persistSession: true,
-      },
-    },
-  )
+  // Avoid importing Supabase server libraries inside middleware (Edge runtime).
+  // Instead perform a lightweight check for authentication cookies that
+  // Supabase sets. This prevents bundling Node-only APIs into the Edge
+  // middleware and keeps redirects fast.
 
-  // Verificar si el usuario está autenticado
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const hasAccessToken = !!request.cookies.get("sb-access-token")?.value
+  const hasRefreshToken = !!request.cookies.get("sb-refresh-token")?.value
+  const hasSession = hasAccessToken || hasRefreshToken || !!request.cookies.get("sb")?.value
 
-  // Si no hay usuario y no es una ruta pública, redirigir al login
-  if (!user) {
+  if (!hasSession) {
     const url = request.nextUrl.clone()
     url.pathname = "/admin/login"
     return NextResponse.redirect(url)
   }
 
-  // Usuario autenticado, continuar
+  // User appears to have a session cookie — continue. For stricter checks
+  // consider validating the JWT on a server route instead of in middleware.
   return NextResponse.next({ request })
 }

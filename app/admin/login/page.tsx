@@ -25,14 +25,31 @@ export default function AdminLogin() {
   
   useEffect(() => {
     // Inicializar Supabase solo en el cliente
-    setSupabase(createClient())
+    const client = createClient()
+    setSupabase(client)
+
+    // Si el cliente no se pudo crear (ej. faltan vars de entorno), mostrar
+    // un mensaje de error para que el usuario sepa por qué el botón no hace nada.
+    if (!client) {
+      setError(
+        "Error de configuración: faltan las variables NEXT_PUBLIC_SUPABASE_URL o NEXT_PUBLIC_SUPABASE_ANON_KEY. Revise .env.local y reinicie el servidor."
+      )
+    }
   }, [])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (loading || !supabase) return // Prevenir múltiples envíos o si Supabase no está inicializado
+    if (loading) return // Prevenir múltiples envíos
     setLoading(true)
     setError("")
+
+    if (!supabase) {
+      setError(
+        "Cliente Supabase no inicializado. Revise la configuración de variables de entorno (NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY)."
+      )
+      setLoading(false)
+      return
+    }
 
     try {
       // Validación básica del lado del cliente
