@@ -641,6 +641,10 @@ export function RegistrationForm() {
                 placeholder={t("select_nationality")}
                 className="mb-6"
                 required
+                // Estabilizar IDs generados por react-select para evitar
+                // mismatches de SSR/CSR en Next.js
+                instanceId="registration-nationality-select"
+                inputId="registration-nationality-input"
                 styles={{
                   control: (base) => ({
                     ...base,

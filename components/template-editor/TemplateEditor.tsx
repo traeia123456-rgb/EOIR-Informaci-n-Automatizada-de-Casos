@@ -157,7 +157,7 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
       console.error('Error adding component:', err)
       await templatePersistence.createBackup(currentTemplate)
     }
-  }, [currentTemplate])
+  }, [currentTemplate, addToHistory])
 
   // Función para actualizar componente
   const updateComponent = useCallback(async (id: string, updates: Partial<TemplateComponent>) => {
@@ -186,7 +186,7 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
     } catch (err) {
       console.error('Error al guardar:', err)
     }
-  }, [currentTemplate])
+  }, [currentTemplate, addToHistory])
 
   // Función para eliminar componente
   const deleteComponent = useCallback((id: string) => {
@@ -421,7 +421,7 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
         console.warn('No se pudo cargar desde localStorage:', err)
       }
     }
-  }, [template?.meta.id])
+  }, [template?.meta.id, template?.meta.updatedAt])
 
   // Función para exportar
   const handleExport = useCallback((format: 'json' | 'png' | 'pdf') => {

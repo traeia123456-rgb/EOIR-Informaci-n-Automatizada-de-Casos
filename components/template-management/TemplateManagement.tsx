@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -42,7 +42,7 @@ export default function TemplateManagement({ user }: TemplateManagementProps) {
 
 
   // Datos de ejemplo para plantillas
-  const sampleTemplates: Template[] = [
+  const sampleTemplates: Template[] = useMemo(() => [
     {
       meta: {
         id: 'tpl_001',
@@ -124,13 +124,13 @@ export default function TemplateManagement({ user }: TemplateManagementProps) {
         showGuides: true
       }
     }
-  ]
+  ], [user?.email])
 
   useEffect(() => {
     // Cargar plantillas de ejemplo
     setTemplates(sampleTemplates)
     setFilteredTemplates(sampleTemplates)
-  }, [])
+  }, [sampleTemplates])
 
   useEffect(() => {
     // Filtrar plantillas

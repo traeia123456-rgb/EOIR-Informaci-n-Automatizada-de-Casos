@@ -15,7 +15,6 @@ import {
   Tag,
   Download,
   FileText,
-  Image,
   FileDown
 } from 'lucide-react'
 import { Template, ComponentProps } from '@/types/template'
@@ -304,7 +303,7 @@ export default function TemplateSidebar({ onAddComponent, onExport, template }: 
                 className="w-full justify-start"
                 onClick={() => onExport('png')}
               >
-                <Image className="w-4 h-4 mr-2" />
+                <ImageIcon className="w-4 h-4 mr-2" />
                 Exportar como PNG
               </Button>
               
