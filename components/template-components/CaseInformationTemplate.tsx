@@ -259,19 +259,21 @@ export default function CaseInformationTemplate({
 
           <div className="p-6">
             {caseData.appeal_received_date ? (
-              <div className="space-y-6">
-                <p className="text-gray-700 mb-6 text-center">
+              <div className="text-center space-y-4">
+                <p className="text-gray-700 mb-6">
                   {t("appeal_received_on")} <strong>{formatDate(caseData.appeal_received_date)}</strong>. {t("still_pending")}
                 </p>
 
-                <div className="text-center">
-                  <h3 className="text-slate-900 font-extrabold tracking-wide text-xs mb-1">{t("status_respondent_brief")}</h3>
-                  <p className="text-gray-700">{translatedTexts.briefStatusRespondent || t("pending")}</p>
-                </div>
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <h3 className="text-slate-900 font-extrabold tracking-wide text-xs mb-1">{t("status_respondent_brief")}</h3>
+                    <p className="text-gray-700">{translatedTexts.briefStatusRespondent || t("pending")}</p>
+                  </div>
 
-                <div className="text-center">
-                  <h3 className="text-slate-900 font-extrabold tracking-wide text-xs mb-1">{t("status_dhs_brief")}</h3>
-                  <p className="text-gray-700">{translatedTexts.briefStatusDhs || t("pending")}</p>
+                  <div className="text-center">
+                    <h3 className="text-slate-900 font-extrabold tracking-wide text-xs mb-1">{t("status_dhs_brief")}</h3>
+                    <p className="text-gray-700">{translatedTexts.briefStatusDhs || t("pending")}</p>
+                  </div>
                 </div>
               </div>
             ) : (
