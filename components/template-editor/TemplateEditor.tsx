@@ -113,6 +113,36 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
   // Función para generar ID único
   const generateId = () => `comp_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
 
+  // Función para agregar al historial
+  const addToHistory = useCallback((template: Template, message: string) => {
+    const MAX_HISTORY = 50
+    
+    const historyItem = {
+      id: generateId(),
+      templateId: template.meta.id || 'new',
+      version: template.meta.version,
+      data: template,
+      createdAt: new Date().toISOString(),
+      createdBy: template.meta.createdBy || 'user',
+      message
+    }
+
+    setEditorState(prev => {
+      const newHistory = [...prev.history.slice(0, prev.currentHistoryIndex + 1), historyItem]
+      
+      // Mantener solo los últimos MAX_HISTORY elementos
+      if (newHistory.length > MAX_HISTORY) {
+        newHistory.splice(0, newHistory.length - MAX_HISTORY)
+      }
+      
+      return {
+        ...prev,
+        history: newHistory,
+        currentHistoryIndex: Math.min(prev.currentHistoryIndex + 1, newHistory.length - 1)
+      }
+    })
+  }, [])
+
   // Función para agregar componente
   const addComponent = useCallback(async (type: string, props: any = {}) => {
     try {
@@ -186,7 +216,7 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
     } catch (err) {
       console.error('Error al guardar:', err)
     }
-  }, [currentTemplate, addToHistory])
+  }, [currentTemplate])
 
   // Función para eliminar componente
   const deleteComponent = useCallback((id: string) => {
@@ -203,7 +233,7 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
       isDirty: true 
     }))
     addToHistory(updatedTemplate, 'Componente eliminado')
-  }, [currentTemplate])
+  }, [currentTemplate, addToHistory])
 
   // Función para duplicar componente
   const duplicateComponent = useCallback((id: string) => {
@@ -226,42 +256,14 @@ export default function TemplateEditor({ template, onSave, onCancel }: TemplateE
     setCurrentTemplate(updatedTemplate)
     setEditorState(prev => ({ ...prev, isDirty: true }))
     addToHistory(updatedTemplate, 'Componente duplicado')
-  }, [currentTemplate])
+  }, [currentTemplate, addToHistory])
 
   // Función para seleccionar componente
   const selectComponent = useCallback((id: string | null) => {
     setEditorState(prev => ({ ...prev, selectedComponent: id }))
   }, [])
 
-  // Función para agregar al historial
-  const addToHistory = useCallback((template: Template, message: string) => {
-    const MAX_HISTORY = 50
-    
-    const historyItem = {
-      id: generateId(),
-      templateId: template.meta.id || 'new',
-      version: template.meta.version,
-      data: template,
-      createdAt: new Date().toISOString(),
-      createdBy: template.meta.createdBy || 'user',
-      message
-    }
-
-    setEditorState(prev => {
-      const newHistory = [...prev.history.slice(0, prev.currentHistoryIndex + 1), historyItem]
-      
-      // Mantener solo los últimos MAX_HISTORY elementos
-      if (newHistory.length > MAX_HISTORY) {
-        newHistory.splice(0, newHistory.length - MAX_HISTORY)
-      }
-      
-      return {
-        ...prev,
-        history: newHistory,
-        currentHistoryIndex: Math.min(prev.currentHistoryIndex + 1, newHistory.length - 1)
-      }
-    })
-  }, [])
+  
 
   // Función para exportar
   const exportTemplate = useCallback(async (format: 'png' | 'pdf' | 'json') => {
