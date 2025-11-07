@@ -624,7 +624,11 @@ export function RegistrationForm() {
                   <span className="text-red italic">*{t("required")}</span>
                 </div>
                 <div className="flex flex-nowrap">
-                  <HelpCircle size={20} className="mr-1 md:mr-2 text-blue-600" aria-hidden="true" />
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMC4yODEiIGhlaWdodD0iMjAuMjgxIiB2aWV3Qm94PSIwIDAgMjAuMjgxIDIwLjI4MSI+DQogIDxwYXRoIGlkPSJJY29uX2F3ZXNvbWUtcXVlc3Rpb24tY2lyY2xlIiBkYXRhLW5hbWU9Ikljb24gYXdlc29tZS1xdWVzdGlvbi1jaXJjbGUiIGQ9Ik0yMC44NDMsMTAuN0ExMC4xNCwxMC4xNCwwLDEsMSwxMC43LjU2MywxMC4xNCwxMC4xNCwwLDAsMSwyMC44NDMsMTAuN1pNMTAuOTc1LDMuOTE1QTUuMyw1LjMsMCwwLDAsNi4yMDksNi41MjJhLjQ5MS40OTEsMCwwLDAsLjExMS42NjVMNy43MzksOC4yNjNhLjQ5MS40OTEsMCwwLDAsLjY4MS0uMDg3Yy43My0uOTI2LDEuMjMxLTEuNDY0LDIuMzQzLTEuNDY0LjgzNSwwLDEuODY5LjUzOCwxLjg2OSwxLjM0OCwwLC42MTItLjUwNi45MjctMS4zMywxLjM4OS0uOTYyLjUzOS0yLjIzNSwxLjIxLTIuMjM1LDIuODg5VjEyLjVhLjQ5MS40OTEsMCwwLDAsLjQ5MS40OTFoMi4yOWEuNDkxLjQ5MSwwLDAsMCwuNDkxLS40OTF2LS4wNTVjMC0xLjE2NCwzLjQtMS4yMTIsMy40LTQuMzYxQzE1Ljc0LDUuNzE0LDEzLjI4LDMuOTE1LDEwLjk3NSwzLjkxNVpNMTAuNywxNC4wNTZhMS44ODEsMS44ODEsMCwxLDAsMS44ODEsMS44ODFBMS44ODMsMS44ODMsMCwwLDAsMTAuNywxNC4wNTZaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMC41NjMgLTAuNTYzKSIgZmlsbD0iIzA3NjRiZCIvPg0KPC9zdmc+DQo="
+                    className="mr-1 md:mr-2"
+                    alt="Question icon"
+                  />
                   <button type="button" className="cursor-pointer italic text-blue whitespace-nowrap">
                     {t("what_is_nationality")}
                   </button>

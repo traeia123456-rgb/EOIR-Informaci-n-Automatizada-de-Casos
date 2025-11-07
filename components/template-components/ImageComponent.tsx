@@ -1,15 +1,15 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Rnd } from 'react-rnd'
 import { TemplateComponent } from '@/types/template'
 import { Button } from '@/components/ui/button'
 import { 
   Edit, 
   Trash2, 
-  Copy
+  Copy, 
+  Image as ImageIcon
 } from 'lucide-react'
-import Image from 'next/image'
 
 interface ImageComponentProps {
   component: TemplateComponent
@@ -28,11 +28,6 @@ export default function ImageComponent({
   onDuplicate,
   onUpdate
 }: ImageComponentProps) {
-  const [src, setSrc] = useState(component.props.src || '/placeholder-image.jpg')
-  useEffect(() => {
-    setSrc(component.props.src || '/placeholder-image.jpg')
-  }, [component.props.src])
-
   const imageStyles = {
     objectFit: component.props.fit || 'cover',
     opacity: component.props.opacity || 1,
@@ -57,15 +52,16 @@ export default function ImageComponent({
         className="w-full h-full relative"
         onClick={onSelect}
       >
-        <Image
-          fill
-          src={src}
+        <img
+          src={component.props.src || '/placeholder-image.jpg'}
           alt={component.props.alt || 'Imagen'}
-          className="rounded"
+          className="w-full h-full rounded"
           style={imageStyles}
-          sizes="100vw"
-          onError={() => {
-            setSrc('/placeholder-image.jpg')
+          onError={(e) => {
+            // Si la imagen falla, mostrar placeholder
+            const target = e.target as HTMLImageElement
+            target.src = '/placeholder-image.jpg'
+            target.onerror = null // Prevenir loop infinito
           }}
         />
 

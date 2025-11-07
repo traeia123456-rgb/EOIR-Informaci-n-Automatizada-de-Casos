@@ -146,7 +146,7 @@ export default function TemplateCanvas({
           Componente no soportado: {component.type}
         </div>
     }
-  }, [selectedComponent, onSelectComponent, onDeleteComponent, onDuplicateComponent, onUpdateComponent])
+  }, [selectedComponent, onSelectComponent, onDeleteComponent, onDuplicateComponent])
 
   // Función para manejar clic en el canvas (deseleccionar)
   const handleCanvasClick = useCallback((e: React.MouseEvent) => {

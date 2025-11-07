@@ -5,7 +5,7 @@
 
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { useLanguage } from '@/components/language-provider'
 import { useAutoTranslate } from '@/lib/use-auto-translate'
 import { Button } from '@/components/ui/button'
@@ -43,7 +43,7 @@ export function ContactFormWithAutoTranslate() {
   const [isTranslatingLabels, setIsTranslatingLabels] = useState(false)
 
   // Textos que no están en el diccionario y necesitan traducción automática
-  const dynamicLabels = useMemo(() => ({
+  const dynamicLabels = {
     name: 'Full Name',
     email: 'Email Address',
     phone: 'Phone Number',
@@ -61,7 +61,7 @@ export function ContactFormWithAutoTranslate() {
     support: 'Technical Support',
     billing: 'Billing Question',
     feedback: 'Feedback'
-  }), [])
+  }
 
   // Traducir todas las etiquetas dinámicas
   useEffect(() => {
@@ -89,7 +89,7 @@ export function ContactFormWithAutoTranslate() {
       // Si no está habilitada, usar los textos en inglés
       setTranslatedLabels(dynamicLabels)
     }
-  }, [autoTranslateEnabled, translate, dynamicLabels])
+  }, [autoTranslateEnabled, translate])
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
