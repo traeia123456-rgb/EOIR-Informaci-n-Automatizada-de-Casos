@@ -44,7 +44,7 @@ export default function CaseInformationContent({ caseData }: Props) {
     }
 
     translateTexts()
-  }, [lang, caseData, tAsync])
+  }, [lang, caseData, tAsync, t])
 
   const formatDate = (dateString: string | null) => {
     if (!dateString) return t("date_not_specified")

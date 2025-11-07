@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react'
+import Image from "next/image"
 import { Rnd } from 'react-rnd'
 import { TemplateComponent } from '@/types/template'
 import { Button } from '@/components/ui/button'
@@ -52,11 +53,13 @@ export default function ImageComponent({
         className="w-full h-full relative"
         onClick={onSelect}
       >
-        <img
+        <Image
           src={component.props.src || '/placeholder-image.jpg'}
           alt={component.props.alt || 'Imagen'}
           className="w-full h-full rounded"
           style={imageStyles}
+          width={component.w * 50}
+          height={component.h * 50}
           onError={(e) => {
             // Si la imagen falla, mostrar placeholder
             const target = e.target as HTMLImageElement

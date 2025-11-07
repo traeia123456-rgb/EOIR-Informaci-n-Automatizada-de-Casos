@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { createClient } from "@/lib/client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -64,11 +64,7 @@ export default function ReportsSection({ user, stats }: ReportsSectionProps) {
 
   const supabase = createClient()
 
-  useEffect(() => {
-    loadCases()
-  }, [])
-
-  const loadCases = async () => {
+  const loadCases = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from("immigration_cases")
@@ -80,7 +76,11 @@ export default function ReportsSection({ user, stats }: ReportsSectionProps) {
     } catch (error) {
       console.error("Error loading cases:", error)
     }
-  }
+  }, [supabase])
+
+  useEffect(() => {
+    loadCases()
+  }, [loadCases])
 
   const filterCasesByDate = (cases: CaseData[], dateFrom?: string, dateTo?: string): CaseData[] => {
     if (!dateFrom && !dateTo) return cases
