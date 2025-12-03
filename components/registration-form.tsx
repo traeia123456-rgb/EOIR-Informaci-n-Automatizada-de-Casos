@@ -713,9 +713,13 @@ export function RegistrationForm() {
             </button>
 
             {/* Legal Disclaimer */}
-            <div className="mt-4 p-3 bg-blue-50 border-l-4 border-blue-500 text-xs text-slate-700 leading-relaxed">
-              <p className="font-semibold text-blue-900 mb-1">ℹ️ Info</p>
-              <p>{t("info_notice")}</p>
+            <div className="mt-6 flex items-start gap-2 text-xs text-slate-600">
+              <div className="mt-0.5 min-w-[16px]">
+                <HelpCircle className="w-4 h-4 text-slate-400" />
+              </div>
+              <p className="italic leading-relaxed">
+                {t("info_notice")}
+              </p>
             </div>
             </div>
           </form>
