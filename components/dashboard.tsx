@@ -65,30 +65,29 @@ export default function AdminDashboard({ user }: AdminDashboardProps) {
       // Get total cases
       const { count: totalCases } = await supabase.from("immigration_cases").select("*", { count: "exact", head: true })
 
-      // Get active cases (cases with pending appeals or no decision yet)
+      // Get active cases (cases with pending appeals or in review)
       const { count: activeCases } = await supabase
         .from("immigration_cases")
         .select("*", { count: "exact", head: true })
-        .or("appeal_status.ilike.%pending%,judicial_decision.is.null")
+        .or("appeal_status.ilike.%pending%,appeal_status.ilike.%in_review%")
 
       // Get pending cases (same as active cases)
       const { count: pendingCases } = await supabase
         .from("immigration_cases")
         .select("*", { count: "exact", head: true })
-        .or("appeal_status.ilike.%pending%,judicial_decision.is.null")
+        .or("appeal_status.ilike.%pending%,appeal_status.ilike.%in_review%")
 
-      // Get completed cases (cases with judicial decisions)
+      // Get completed cases (cases with approved status)
       const { count: completedCases } = await supabase
         .from("immigration_cases")
         .select("*", { count: "exact", head: true })
-        .not("judicial_decision", "is", null)
-        .neq("judicial_decision", "")
+        .ilike("appeal_status", "%approved%")
 
-      // Get rejected cases (cases with expulsion orders)
+      // Get rejected cases (cases with rejected status)
       const { count: rejectedCases } = await supabase
         .from("immigration_cases")
         .select("*", { count: "exact", head: true })
-        .ilike("judicial_decision", "%expulsión%")
+        .ilike("appeal_status", "%rejected%")
 
       // Get scheduled hearings (cases with future hearing dates)
       const { count: scheduledHearings } = await supabase
