@@ -93,16 +93,14 @@ export default function CaseInformationContent({ caseData }: Props) {
                 <div dangerouslySetInnerHTML={{ __html: formatTextWithBold(translatedTexts.nextHearingInfo) }} className="text-gray-800 text-lg" />
               </div>
             ) : (
-              <>
-                <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Image src="/flags/relog.svg" alt={t("clock_icon")} width={58} height={58} className="rounded-full" />
+              <div className="flex flex-col items-center justify-center py-8">
+                <div className="mb-4 opacity-30">
+                  <Image src="/flags/relog.svg" alt={t("clock_icon")} width={48} height={48} />
                 </div>
-                <div className="bg-slate-50 border rounded-lg p-5 max-w-2xl mx-auto">
-                  <p className="text-slate-600 italic text-lg text-center">
-                    {t("no_future_hearings")}
-                  </p>
-                </div>
-              </>
+                <p className="text-slate-600 italic text-lg text-center">
+                  {t("no_future_hearings")}
+                </p>
+              </div>
             )}
           </div>
         </div>
@@ -138,15 +136,13 @@ export default function CaseInformationContent({ caseData }: Props) {
                 )}
               </div>
             ) : (
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Image src="/flags/relog.svg" alt={t("clock_icon")} width={58} height={58} className="rounded-full" />
+              <div className="flex flex-col items-center justify-center py-8">
+                <div className="mb-4 opacity-30">
+                  <Image src="/flags/relog.svg" alt={t("clock_icon")} width={48} height={48} />
                 </div>
-                <div className="bg-slate-50 border rounded-lg p-5 max-w-2xl mx-auto">
-                  <p className="text-slate-600 italic text-lg">
-                    {t("case_pending")}
-                  </p>
-                </div>
+                <p className="text-slate-600 italic text-lg text-center">
+                  {t("case_pending")}
+                </p>
               </div>
             )}
           </div>
