@@ -706,6 +706,12 @@ export function RegistrationForm() {
             >
               {isLoading ? t("searching") : t("search")}
             </button>
+
+            {/* Legal Disclaimer */}
+            <div className="mt-4 p-3 bg-blue-50 border-l-4 border-blue-500 text-xs text-slate-700 leading-relaxed">
+              <p className="font-semibold text-blue-900 mb-1">ℹ️ Info</p>
+              <p>{t("info_notice")}</p>
+            </div>
             </div>
           </form>
         </div>
