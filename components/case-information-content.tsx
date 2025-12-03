@@ -163,35 +163,31 @@ export default function CaseInformationContent({ caseData }: Props) {
             </h2>
           </div>
 
-          <div className="p-6 flex items-center justify-center min-h-[200px]">
-            {!caseData.appeal_received_date && (
+          <div className="p-6">
+            {!caseData.appeal_received_date ? (
               <div className="text-center">
                 {caseData.appeal_board_info ? (
                   <p className="text-gray-700">{translatedTexts.appealBoardInfo}</p>
                 ) : (
-                  <p className="text-gray-700 mb-6">{t("no_appeal_for_case")}</p>
+                  <p className="text-gray-700">{t("no_appeal_for_case")}</p>
                 )}
               </div>
-            )}
-
-            {caseData.appeal_received_date && (
-              <>
-                <p className="text-gray-700 mb-6 text-center">
+            ) : (
+              <div className="text-center space-y-4">
+                <p className="text-gray-700">
                   {t("appeal_received_on")} <strong>{formatDate(caseData.appeal_received_date)}</strong>. {t("still_pending")}
                 </p>
 
-                <div className="space-y-6">
-                  <div className="text-center">
-                    <h3 className="text-slate-900 font-extrabold tracking-wide text-xs mb-1">{t("status_respondent_brief")}</h3>
-                    <div className="text-gray-700" dangerouslySetInnerHTML={{ __html: formatTextWithBold(translatedTexts.briefStatusRespondent || t("pending")) }} />
-                  </div>
-
-                  <div className="text-center">
-                    <h3 className="text-slate-900 font-extrabold tracking-wide text-xs mb-1">{t("status_dhs_brief")}</h3>
-                    <p className="text-gray-700">{translatedTexts.briefStatusDhs || t("pending")}</p>
-                  </div>
+                <div>
+                  <h3 className="text-slate-900 font-extrabold tracking-wide text-xs mb-1">{t("status_respondent_brief")}</h3>
+                  <div className="text-gray-700" dangerouslySetInnerHTML={{ __html: formatTextWithBold(translatedTexts.briefStatusRespondent || t("pending")) }} />
                 </div>
-              </>
+
+                <div>
+                  <h3 className="text-slate-900 font-extrabold tracking-wide text-xs mb-1">{t("status_dhs_brief")}</h3>
+                  <p className="text-gray-700">{translatedTexts.briefStatusDhs || t("pending")}</p>
+                </div>
+              </div>
             )}
           </div>
         </div>
