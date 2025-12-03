@@ -7,9 +7,21 @@ import Image from "next/image"
 import CaseInformationContent from "@/components/case-information-content"
 import { Breadcrumb } from "@/components/breadcrumb"
 import { CaseHeader } from "@/components/case-header"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Consulta de Caso de Inmigración",
+  description: "Consulta el estado de tu caso de inmigración usando tu número de registro (A-Number). Información actualizada sobre audiencias, decisiones judiciales y estado de apelaciones.",
+  keywords: ["consulta caso inmigración", "A-Number", "número de registro", "estado caso EOIR", "audiencia inmigración", "decisión judicial inmigración"],
+  openGraph: {
+    title: "Consulta tu Caso de Inmigración | EOIR",
+    description: "Consulta el estado de tu caso de inmigración usando tu número de registro (A-Number)",
+  },
+}
 
 export const dynamic = "force-dynamic"
 export const revalidate = 0
+
 
 interface CaseData {
   id: string
