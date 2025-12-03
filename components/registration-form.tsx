@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import { HelpCircle } from "lucide-react"
 import Select from "react-select"
 import { useLanguage } from "@/components/language-provider"
+import { ClientOnly } from "@/components/client-only"
 
 type Nationality = {
   value: string
@@ -637,62 +638,66 @@ export function RegistrationForm() {
                   </button>
                 </div>
               </div>
-              <Select
-                options={nationalityOptions}
-                value={selectedNationality}
-                onChange={(option) => setSelectedNationality(option)}
-                placeholder={t("select_nationality")}
-                className="mb-6"
-                required
-                // Estabilizar IDs generados por react-select para evitar
-                // mismatches de SSR/CSR en Next.js
-                instanceId="registration-nationality-select"
-                inputId="registration-nationality-input"
-                styles={{
-                  control: (base) => ({
-                    ...base,
-                    minHeight: '42px',
-                    border: '2px solid #e5e7eb',
-                    borderRadius: '0.375rem',
-                    boxShadow: 'none',
-                    '&:hover': {
-                      borderColor: '#3b82f6'
-                    }
-                  }),
-                  menu: (base) => ({
-                    ...base,
-                    marginTop: '0',
-                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                    border: '1px solid #e5e7eb'
-                  }),
-                  menuList: (base) => ({
-                    ...base,
-                    padding: '0',
-                    maxHeight: '200px'
-                  }),
-                  placeholder: (base) => ({
-                    ...base,
-                    color: '#6b7280',
-                    fontSize: '0.875rem'
-                  }),
-                  option: (base, state) => ({
-                    ...base,
-                    padding: '8px 12px',
-                    backgroundColor: state.isSelected ? '#3b82f6' : 'white',
-                    color: state.isSelected ? 'white' : '#374151',
-                    cursor: 'pointer',
-                    '&:hover': {
-                      backgroundColor: state.isSelected ? '#3b82f6' : '#f3f4f6'
-                    }
-                  })
-                }}
-                classNames={{
-                  control: () => 'border-2 border-gray-200 hover:border-blue-500 transition-colors',
-                  placeholder: () => 'text-gray-500 text-sm',
-                  input: () => 'text-sm',
-                  option: () => 'text-sm'
-                }}
-              />
+              <ClientOnly fallback={
+                <div className="w-full h-[42px] border-2 border-gray-200 rounded-md bg-white flex items-center px-3 text-gray-500 text-sm">
+                  {t("select_nationality")}
+                </div>
+              }>
+                <Select
+                  options={nationalityOptions}
+                  value={selectedNationality}
+                  onChange={(option) => setSelectedNationality(option)}
+                  placeholder={t("select_nationality")}
+                  className="mb-6"
+                  required
+                  instanceId="registration-nationality-select"
+                  inputId="registration-nationality-input"
+                  styles={{
+                    control: (base) => ({
+                      ...base,
+                      minHeight: '42px',
+                      border: '2px solid #e5e7eb',
+                      borderRadius: '0.375rem',
+                      boxShadow: 'none',
+                      '&:hover': {
+                        borderColor: '#3b82f6'
+                      }
+                    }),
+                    menu: (base) => ({
+                      ...base,
+                      marginTop: '0',
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                      border: '1px solid #e5e7eb'
+                    }),
+                    menuList: (base) => ({
+                      ...base,
+                      padding: '0',
+                      maxHeight: '200px'
+                    }),
+                    placeholder: (base) => ({
+                      ...base,
+                      color: '#6b7280',
+                      fontSize: '0.875rem'
+                    }),
+                    option: (base, state) => ({
+                      ...base,
+                      padding: '8px 12px',
+                      backgroundColor: state.isSelected ? '#3b82f6' : 'white',
+                      color: state.isSelected ? 'white' : '#374151',
+                      cursor: 'pointer',
+                      '&:hover': {
+                        backgroundColor: state.isSelected ? '#3b82f6' : '#f3f4f6'
+                      }
+                    })
+                  }}
+                  classNames={{
+                    control: () => 'border-2 border-gray-200 hover:border-blue-500 transition-colors',
+                    placeholder: () => 'text-gray-500 text-sm',
+                    input: () => 'text-sm',
+                    option: () => 'text-sm'
+                  }}
+                />
+              </ClientOnly>
             </fieldset>
 
             {error && (
