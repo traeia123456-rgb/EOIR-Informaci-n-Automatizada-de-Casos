@@ -288,14 +288,17 @@ export default function CaseManagement({ user, onStatsUpdate }: CaseManagementPr
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
-    setSuccess('')
-  
     try {
       const cleanedFormData = {
         ...formData,
         court_address: formData.court_address || "915 2ND AVENUE, SUITE 613\nSEATTLE, WA 98174",
         // Asegurarse de que court_location también se actualice para mantener compatibilidad
         court_location: formData.court_address || "915 2ND AVENUE, SUITE 613\nSEATTLE, WA 98174",
+        // Convertir fechas vacías a null para evitar error "invalid input syntax for type date"
+        cause_list_date: formData.cause_list_date || null,
+        appeal_received_date: formData.appeal_received_date || null,
+        next_hearing_date: formData.next_hearing_date || null,
+        decision_date: formData.decision_date || null,
       }
   
       if (selectedCase) {
